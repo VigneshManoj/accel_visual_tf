@@ -1,0 +1,2 @@
+geometry_msgs/WrenchStamped body_wrench
+geometry_msgs/WrenchStamped body_pos

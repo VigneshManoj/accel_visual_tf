@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
 )
+find_package(geometry_msgs REQUIRED)
+ find_package(message_generation REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -46,9 +48,9 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
+add_message_files(
+   FILES
+   Num1.msg )
 #   Message2.msg
 # )
 
@@ -67,10 +69,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
-# )
+generate_messages(
+   DEPENDENCIES
+   geometry_msgs )# Or other packages containing msgs
+ 
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -117,6 +119,8 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  
+
 )
 
 ## Declare a C++ library
@@ -198,5 +202,5 @@ include_directories(
 # catkin_add_nosetests(test)
 
 add_executable(accel_tf_visual src/accel_vector_visual.cpp)
-#add_dependencies(accel_tf_visual accel_vector_visual.cpp)
+add_dependencies(accel_tf_visual accel_tf_visual_generate_messages_cpp)
 target_link_libraries(accel_tf_visual ${catkin_LIBRARIES})
